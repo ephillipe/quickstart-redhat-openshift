@@ -1,8 +1,3 @@
-#Attach to Subscription pool
-REDHAT_USERNAME=$1
-REDHAT_PASSWORD=$2
-REDHAT_POOLID=$3
-
 yum clean all
 rm -rf /var/cache/yum
 
