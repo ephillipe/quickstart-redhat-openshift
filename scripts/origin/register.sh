@@ -18,10 +18,6 @@ function install_prereqs {
         
         log "Instalando pre-requisitos para rodar o sistema de métricas"
         sudo yum install -y java-1.8.0-openjdk-headless
-        
-        log "Instalando Ansible"
-        sudo pip install --upgrade pip
-        sudo pip install --upgrade ansible apache-libcloud
     fi
 }
 
