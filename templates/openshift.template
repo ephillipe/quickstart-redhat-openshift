@@ -42,6 +42,14 @@
                 },
                 {
                     "Label": {
+                        "default": "Openshift Deployment Type Configuration"
+                    },
+                    "Parameters": [
+                        "OpenshiftDeploymentType"
+                    ]
+                },
+                {
+                    "Label": {
                         "default": "Ansible Playbook Configuration"
                     },
                     "Parameters": [
@@ -114,6 +122,9 @@
                 },
                 "RedhatSubscriptionPoolID": {
                     "default": "Red Hat Pool ID"
+                },                
+                "OpenshiftDeploymentType": {
+                    "default": "Openshift Deployment Type"
                 },
                 "AnsiblePlaybookType": {
                     "default": "Ansible Playbook Mode"
@@ -202,6 +213,14 @@
         },
         "RedhatSubscriptionPoolID": {
             "Description": "Enter Redhat RHN PoolID",
+            "Type": "String"
+        },        
+        "OpenshiftDeploymentType": {            
+            "Default": "origin",
+            "AllowedValues": [
+                "origin",
+                "openshift-enterprise"
+            ],
             "Type": "String"
         },
         "AnsiblePlaybookType": {
@@ -776,7 +795,6 @@
                                 "echo \"========================================================================================================================\"\n",
                                 "echo \"\t------------------[] Completed: QuickStart Common Utils \"\n",
                                 "\n",
-
                                 "echo \"========================================================================================================================\"\n",
                                 "echo \"\t------------------[]Attach to Subscription pool\"\n",
                                 "SCRIPT_PATH=",
@@ -785,9 +803,13 @@
 
                                 },
                                 "\n",
-                                "aws s3 cp ${SCRIPT_PATH}scripts/redhat_ose-register.sh  ~/redhat_ose-register.sh \n",
-                                "chmod 755 ~/redhat_ose-register.sh\n",
-                                "qs_retry_command 20 ~/redhat_ose-register.sh ",
+                                "aws s3 cp ${SCRIPT_PATH}scripts/",
+                                {
+                                    "Ref": "OpenshiftDeploymentType"
+                                },
+                                "/register.sh  ~/register.sh \n",
+                                "chmod 755 ~/register.sh\n",
+                                "qs_retry_command 20 ~/register.sh ",
                                 {
                                     "Fn::Sub": "${RedhatSubscriptionUserName} ${RedhatSubscriptionPassword} ${RedhatSubscriptionPoolID} "
 
@@ -968,9 +990,13 @@
 
                                 },
                                 "\n",
-                                "aws s3 cp ${SCRIPT_PATH}scripts/redhat_ose-register.sh  ~/redhat_ose-register.sh \n",
-                                "chmod 755 ~/redhat_ose-register.sh\n",
-                                "qs_retry_command 20 ~/redhat_ose-register.sh ",
+                                "aws s3 cp ${SCRIPT_PATH}scripts/",
+                                {
+                                    "Ref": "OpenshiftDeploymentType"
+                                },
+                                "/register.sh  ~/register.sh \n",
+                                "chmod 755 ~/register.sh\n",
+                                "qs_retry_command 20 ~/register.sh ",
                                 {
                                     "Fn::Sub": "${RedhatSubscriptionUserName} ${RedhatSubscriptionPassword} ${RedhatSubscriptionPoolID} "
 
@@ -1154,9 +1180,13 @@
 
                                 },
                                 "\n",
-                                "aws s3 cp ${SCRIPT_PATH}scripts/redhat_ose-register.sh  ~/redhat_ose-register.sh \n",
-                                "chmod 755 ~/redhat_ose-register.sh\n",
-                                "qs_retry_command 20 ~/redhat_ose-register.sh ",
+                                "aws s3 cp ${SCRIPT_PATH}scripts/",
+                                {
+                                    "Ref": "OpenshiftDeploymentType"
+                                },
+                                "/register.sh  ~/register.sh \n",
+                                "chmod 755 ~/register.sh\n",
+                                "qs_retry_command 20 ~/register.sh ",
                                 {
                                     "Fn::Sub": "${RedhatSubscriptionUserName} ${RedhatSubscriptionPassword} ${RedhatSubscriptionPoolID} "
 
@@ -1448,9 +1478,13 @@
 
                                 },
                                 "\n",
-                                "aws s3 cp ${SCRIPT_PATH}scripts/redhat_ose-register.sh  ~/redhat_ose-register.sh \n",
-                                "chmod 755 ~/redhat_ose-register.sh\n",
-                                "qs_retry_command 20 ~/redhat_ose-register.sh ",
+                                "aws s3 cp ${SCRIPT_PATH}scripts/",
+                                {
+                                    "Ref": "OpenshiftDeploymentType"
+                                },
+                                "/register.sh  ~/register.sh \n",
+                                "chmod 755 ~/register.sh\n",
+                                "qs_retry_command 20 ~/register.sh ",
                                 {
                                     "Fn::Sub": "${RedhatSubscriptionUserName} ${RedhatSubscriptionPassword} ${RedhatSubscriptionPoolID} "
 
@@ -1519,13 +1553,17 @@
                                     "Ref": "AWS::Region"
                                 },
                                 "\n",
-                                "echo \"Begin OpenShift configuration\"\n",
+                                "echo \"Begin OpenShift configuration\"\n",                                
                                 "aws s3 cp ",
                                 {
                                     "Fn::Sub": "s3://${QSS3BucketName}/${QSS3KeyPrefix}"
 
+                                },                                
+                                "scripts/",
+                                {
+                                    "Ref": "OpenshiftDeploymentType"
                                 },
-                                "scripts/openshift_config_ose.yml  ~/openshift_config.yml \n",
+                                "/openshift_config.yml  ~/openshift_config.yml \n",
                                 "cat ~/openshift_config.yml >/etc/ansible/hosts \n",
                                 "echo \"[INFO] Ansible Generated\" \n",
                                 "MASTER_ELBDNSNAME=",
