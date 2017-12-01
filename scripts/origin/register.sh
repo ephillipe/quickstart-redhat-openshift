@@ -28,7 +28,6 @@ function install_prereqs {
         sudo pip install --upgrade pip
         sudo pip install --upgrade ansible apache-libcloud
     fi
-    install_networkmanager_on_all
 }
 
 install_prereqs
