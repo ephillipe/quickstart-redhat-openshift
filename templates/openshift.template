@@ -53,6 +53,7 @@
                         "default": "Ansible Playbook Configuration"
                     },
                     "Parameters": [
+                        "OpenshiftDeploymentType",
                         "AnsiblePlaybookType",
                         "AnsiblePlaybookGitRepoTag"
                     ]
