@@ -52,6 +52,14 @@
                 },
                 {
                     "Label": {
+                        "default": "Openshift Deployment Type Configuration"
+                    },
+                    "Parameters": [
+                        "OpenshiftDeploymentType"
+                    ]
+                },                
+                {
+                    "Label": {
                         "default": "Ansible Playbook Configuration"
                     },
                     "Parameters": [
@@ -115,6 +123,9 @@
                 "RedhatSubscriptionPoolID": {
                     "default": "Red Hat Pool ID"
                 },
+                "OpenshiftDeploymentType": {
+                    "default": "Openshift Deployment Type"
+                },                
                 "AnsiblePlaybookType": {
                     "default": "Ansible Playbook Mode"
                 },
@@ -224,6 +235,15 @@
         },
         "RedhatSubscriptionPoolID": {
             "Description": "Enter Redhat RHN PoolID",
+            "Type": "String"
+        },
+        "OpenshiftDeploymentType": {            
+            "Description": "Note:This QuickStart supports Origin!",
+            "Default": "origin",
+            "AllowedValues": [
+                "origin",
+                "openshift-enterprise"
+            ],
             "Type": "String"
         },
         "AnsiblePlaybookType": {

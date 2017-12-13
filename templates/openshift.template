@@ -217,6 +217,7 @@
             "Type": "String"
         },        
         "OpenshiftDeploymentType": {            
+            "Description": "Note:This QuickStart supports Origin!",
             "Default": "origin",
             "AllowedValues": [
                 "origin",
