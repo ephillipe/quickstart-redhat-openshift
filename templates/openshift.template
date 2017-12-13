@@ -42,14 +42,6 @@
                 },
                 {
                     "Label": {
-                        "default": "Openshift Deployment Type Configuration"
-                    },
-                    "Parameters": [
-                        "OpenshiftDeploymentType"
-                    ]
-                },
-                {
-                    "Label": {
                         "default": "Ansible Playbook Configuration"
                     },
                     "Parameters": [
